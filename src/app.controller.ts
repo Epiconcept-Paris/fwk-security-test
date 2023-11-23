@@ -13,7 +13,7 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
-	return "code mort";"
+	return "code mort";
   }
 
   @Get('/check')
