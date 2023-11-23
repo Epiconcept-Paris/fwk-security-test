@@ -2,6 +2,10 @@ import { Body, Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { CheckDto } from './dto/check.dto';
 
+const endWith = (x: string, y) => {
+  return x.lastIndexOf(y) === x.length - y.length;
+};
+
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -17,6 +21,11 @@ export class AppController {
     if (result === 'hello') {
       return this.appService.getHello();
     }
+
+    if (endWith(result, 'hello')) {
+      return this.appService.getHello();
+    }
+
     return 'undefined command';
   }
 }
