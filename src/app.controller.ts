@@ -13,6 +13,7 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+	return "code mort";"
   }
 
   @Get('/check')
@@ -26,6 +27,6 @@ export class AppController {
       return this.appService.getHello();
     }
 
-    return 'undefined command';
+    return this.jenexistepas('undefined command');
   }
 }
