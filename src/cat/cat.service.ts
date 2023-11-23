@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import sha1 from 'sha1';
+import crypto from 'crypto';
 import { Cat } from './schema/cat.schema';
 import { CreateCatDto } from './dto/create-cat.dto';
 
@@ -12,7 +12,7 @@ export class CatService {
   async create(createCatDto: CreateCatDto): Promise<Cat> {
     const createdCat = new this.catModel({
       ...createCatDto,
-      token: sha1(createCatDto.name),
+      hash: crypto.createHash('sha1').update(createCatDto.name).digest('hex'),
     });
     return createdCat.save();
   }
